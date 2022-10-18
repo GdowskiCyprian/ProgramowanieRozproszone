@@ -1,9 +1,7 @@
-﻿
-
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 
-namespace ProgramowanieRozproszone
+namespace ProgramowanieRozproszone.Helpers
 {
     public class MsSqlProvider
     {
@@ -44,15 +42,15 @@ namespace ProgramowanieRozproszone
                 {
                     command.CommandTimeout = 1800;
                     command.CommandText = query;
-                    if(connection.State != ConnectionState.Closed)
+                    if (connection.State != ConnectionState.Closed)
                     {
                         connection.Open();
                     }
                     dataAdapter.Fill(dataTable);
                 }
-                finally 
-                { 
-                    connection.Close(); 
+                finally
+                {
+                    connection.Close();
                 }
             }
         }
