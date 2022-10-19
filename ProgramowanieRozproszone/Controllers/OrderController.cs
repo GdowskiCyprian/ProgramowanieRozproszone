@@ -5,6 +5,7 @@ using ProgramowanieRozproszone.Models;
 namespace ProgramowanieRozproszone.Controllers
 {
     [ApiController]
+    [Route("[controller]")]
     public class OrderController : Controller
     {
         [HttpGet]

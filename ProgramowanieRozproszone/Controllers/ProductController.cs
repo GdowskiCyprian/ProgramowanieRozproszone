@@ -3,6 +3,8 @@ using ProgramowanieRozproszone.Models;
 
 namespace ProgramowanieRozproszone.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ProductController : Controller
     {
         [HttpGet]
