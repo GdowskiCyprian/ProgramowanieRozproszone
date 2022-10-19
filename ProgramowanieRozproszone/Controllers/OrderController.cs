@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProgramowanieRozproszone.Models;
+using ProgramowanieRozproszone.Services;
 
 namespace ProgramowanieRozproszone.Controllers
 {
@@ -8,11 +9,16 @@ namespace ProgramowanieRozproszone.Controllers
     [Route("[controller]")]
     public class OrderController : Controller
     {
-        [HttpGet]
-        public IEnumerable<Order> GetAllOrders()
+        private OrderService _orderService;
+
+        public OrderController()
         {
-            throw new NotImplementedException();
-            //
+            _orderService = new OrderService();
+        }
+        [HttpGet]
+        public List<Order> GetAllOrders()
+        {
+            return _orderService.GetOrders();
         }
         [HttpPost]
         public void PostOrder([FromBody] Order order)

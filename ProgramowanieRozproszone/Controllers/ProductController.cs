@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProgramowanieRozproszone.Models;
+using ProgramowanieRozproszone.Services;
 
 namespace ProgramowanieRozproszone.Controllers
 {
@@ -7,11 +8,16 @@ namespace ProgramowanieRozproszone.Controllers
     [Route("[controller]")]
     public class ProductController : Controller
     {
+        private ProductService _productService;
+
+        public ProductController()
+        {
+            _productService = new ProductService();
+        }
         [HttpGet]
         public IEnumerable<Product> GetProducts()
         {
-            //get all 
-            throw new NotImplementedException();
+            return _productService.GetProducts();
         }
     }
 }
