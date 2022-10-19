@@ -4,21 +4,31 @@ using ProgramowanieRozproszone.Models;
 
 namespace ProgramowanieRozproszone.Controllers
 {
+    [ApiController]
     public class OrderController : Controller
     {
         [HttpGet]
         public IEnumerable<Order> GetAllOrders()
         {
-            IEnumerable<Order> orders = new List<Order>();
-            return orders;
+            throw new NotImplementedException();
+            //
         }
         [HttpPost]
         public void PostOrder([FromBody] Order order)
         {
             //add new order to database
         }
-        //modify order
+        
+        [HttpPut]
+        public void PutOrder([FromBody] Order order)
+        {
+            //modify order
+        }
+        [HttpDelete]
+        public void DeleteOrder(int OrderId)
+        {
+            //delete order
+        }
 
-        //delete order
     }
 }
