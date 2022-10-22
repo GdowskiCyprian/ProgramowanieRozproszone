@@ -29,12 +29,12 @@ namespace ProgramowanieRozproszone.Controllers
         [HttpPut]
         public void PutOrder([FromBody] Order order)
         {
-            //modify order
+            _orderService.UpdateOrder(order);
         }
         [HttpDelete]
         public void DeleteOrder(int OrderId)
         {
-            //delete order
+            _orderService.DeleteOrder(OrderId);
         }
 
     }
