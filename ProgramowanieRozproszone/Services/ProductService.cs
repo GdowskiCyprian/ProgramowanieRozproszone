@@ -12,7 +12,8 @@ namespace ProgramowanieRozproszone.Services
         }
         public IEnumerable<Product> GetProducts()
         {
-            return _productRepository.GetProducts().Concat(_productRepository.GetProducts2());
+            return new List<Product>() { new Product() { ProductId = 1, ProductName = "Product", ProductPrice = 12 } };
+            //return _productRepository.GetProducts().Concat(_productRepository.GetProducts2());
         }
     }
 }

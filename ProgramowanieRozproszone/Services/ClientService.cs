@@ -12,7 +12,10 @@ namespace ProgramowanieRozproszone.Services
         }
         public IEnumerable<Client> GetClients()
         {
-            return _clientRepository.GetClients().Concat(_clientRepository.GetClients2());
+            return new List<Client>() { 
+                (new Client() { ClientAddress = "Address", ClientId = 1, ClientName = "Name" }) 
+            };
+            //return _clientRepository.GetClients().Concat(_clientRepository.GetClients2());
         }
     }
 }

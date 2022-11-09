@@ -22,88 +22,101 @@ namespace ProgramowanieRozproszone.Services
         }
         public List<Order> GetOrders()
         {
-            var clients = new ClientService().GetClients();
-            var products = new ProductService().GetProducts();
-            var dborders = this.GetDbOrders();
-            var ordermap = this.GetOrderProductMap();
+            //var clients = new ClientService().GetClients();
+            //var products = new ProductService().GetProducts();
+            //var dborders = this.GetDbOrders();
+            //var ordermap = this.GetOrderProductMap();
 
-            List<Order> orders = new List<Order>();
+            //List<Order> orders = new List<Order>();
 
 
-            foreach(var o in dborders)
+            //foreach(var o in dborders)
+            //{
+            //    Order order = new Order();
+            //    order.OrderId = o.OrderId;
+            //    order.OrderDate = o.OrderDate;
+            //    order.Client = clients.Where(c => c.ClientId == o.ClientId).First();
+            //    order.Products = new List<Product>();
+            //    foreach(var p in ordermap)
+            //    {
+            //        if(p.OrderId == order.OrderId)
+            //        {
+            //            order.Products.Add(products.Where(a => a.ProductId == p.ProductId).First());
+            //        }
+            //    }
+            //    orders.Add(order);
+            //}
+
+            //return orders;
+            return new List<Order>()
             {
-                Order order = new Order();
-                order.OrderId = o.OrderId;
-                order.OrderDate = o.OrderDate;
-                order.Client = clients.Where(c => c.ClientId == o.ClientId).First();
-                order.Products = new List<Product>();
-                foreach(var p in ordermap)
+                new Order()
                 {
-                    if(p.OrderId == order.OrderId)
+                    OrderId = 1,
+                    OrderDate = DateTime.Now,
+                    Client = new ClientService().GetClients().First(),
+                    Products = new List<Product>()
                     {
-                        order.Products.Add(products.Where(a => a.ProductId == p.ProductId).First());
+                        new ProductService().GetProducts().First()
                     }
                 }
-                orders.Add(order);
-            }
-
-            return orders;
+            };
 
         }
         public void DeleteOrder(int OrderId)
         {
-            try
-            {
-                _orderRepository.DeleteOrder(OrderId);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            //try
+            //{
+            //    _orderRepository.DeleteOrder(OrderId);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
 
-            try
-            {
-                _orderRepository.DeleteOrder2(OrderId);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            //try
+            //{
+            //    _orderRepository.DeleteOrder2(OrderId);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
         }
         public void UpdateOrder(Order order)
         {
-            try
-            {
-                _orderRepository.UpdateOrder(order);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            //try
+            //{
+            //    _orderRepository.UpdateOrder(order);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
 
-            try
-            {
-                _orderRepository.UpdateOrder2(order);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            //try
+            //{
+            //    _orderRepository.UpdateOrder2(order);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e);
+            //}
         }
         public void PostOrder(Order order)
         {
-            var maxId1 = _orderRepository.maxId();
-            var maxId2 = _orderRepository.maxId2();
-            if (maxId1 >= maxId2)
-            {
-                order.OrderId = maxId1;
-                _orderRepository.InsertOrder2(order);
-            }
-            else
-            {
-                order.OrderId = maxId2;
-                _orderRepository.InsertOrder(order);
-            }
+            //var maxId1 = _orderRepository.maxId();
+            //var maxId2 = _orderRepository.maxId2();
+            //if (maxId1 >= maxId2)
+            //{
+            //    //order.OrderId = maxId1;
+            //    _orderRepository.InsertOrder2(order);
+            //}
+            //else
+            //{
+            //    order.OrderId = maxId2;
+            //    _orderRepository.InsertOrder(order);
+            //}
         }
     }
 }
