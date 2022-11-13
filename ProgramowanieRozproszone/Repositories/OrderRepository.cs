@@ -9,14 +9,12 @@ namespace ProgramowanieRozproszone.Repositories
     {
         private readonly MsSqlProvider _msSqlProvider;
         private readonly MsSqlProvider _msSqlProvider2;
-        private string _connectionString;
-        private string _connectionString2;
-        public OrderRepository()
+        private IConfiguration _configuration;
+        public OrderRepository(IConfiguration configuration)
         {
-            _connectionString = "Server=tcp:programowanierozproszone.database.windows.net,1433;Initial Catalog=programowanierozproszone1;Persist Security Info=False;User ID=ProgramowanieRozproszone;Password=zaq1@WSX;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            _connectionString2 = "Server=tcp:programowanierozproszone.database.windows.net,1433;Initial Catalog=programowanierozproszone2;Persist Security Info=False;User ID=ProgramowanieRozproszone;Password=zaq1@WSX;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            _msSqlProvider = new MsSqlProvider(_connectionString);
-            _msSqlProvider2 = new MsSqlProvider(_connectionString2);
+            _configuration = configuration;
+            _msSqlProvider = new MsSqlProvider(_configuration.GetValue<string>("ConnectionStrings:connectionString1"));
+            _msSqlProvider2 = new MsSqlProvider(_configuration.GetValue<string>("ConnectionStrings:connectionString2"));
         }
         public IEnumerable<DbOrder> GetOrders()
         {
@@ -53,10 +51,12 @@ namespace ProgramowanieRozproszone.Repositories
         public void DeleteOrder(int OrderId)
         {
             _msSqlProvider.ExecuteNonQuery("Delete from Orders Where OrderId = " + OrderId.ToString());
+            _msSqlProvider.ExecuteNonQuery("Delete from OrderIdtoProductId Where OrderId = " + OrderId.ToString());
         }
         public void DeleteOrder2(int OrderId)
         {
             _msSqlProvider2.ExecuteNonQuery("Delete from Orders Where OrderId = " + OrderId.ToString());
+            _msSqlProvider2.ExecuteNonQuery("Delete from OrderIdtoProductId Where OrderId = " + OrderId.ToString());
         }
         public void UpdateOrder(Order order)
         {

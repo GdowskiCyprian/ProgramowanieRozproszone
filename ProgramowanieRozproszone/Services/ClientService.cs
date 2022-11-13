@@ -8,14 +8,17 @@ namespace ProgramowanieRozproszone.Services
         private ClientRepository _clientRepository;
         public ClientService()
         {
-            _clientRepository = new ClientRepository();
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            _clientRepository = new ClientRepository(configuration);
         }
         public IEnumerable<Client> GetClients()
         {
-            return new List<Client>() { 
-                (new Client() { ClientAddress = "Address", ClientId = 1, ClientName = "Name" }) 
-            };
-            //return _clientRepository.GetClients().Concat(_clientRepository.GetClients2());
+            //return new List<Client>() { 
+            //    (new Client() { ClientAddress = "Address", ClientId = 1, ClientName = "Name" }) 
+            //};
+            return _clientRepository.GetClients().Concat(_clientRepository.GetClients2());
         }
     }
 }
