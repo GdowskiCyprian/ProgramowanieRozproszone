@@ -23,7 +23,7 @@ namespace ProgramowanieRozproszone.Controllers
         [HttpPost]
         public void PostOrder([FromBody] Order order)
         {
-            //add new order to database
+            _orderService.PostOrder(order);
         }
         
         [HttpPut]

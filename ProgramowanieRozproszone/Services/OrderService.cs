@@ -112,12 +112,12 @@ namespace ProgramowanieRozproszone.Services
             var maxId2 = _orderRepository.maxId2();
             if (maxId1 >= maxId2)
             {
-                order.OrderId = maxId1;
+                order.OrderId = maxId1+1;
                 _orderRepository.InsertOrder2(order);
             }
             else
             {
-                order.OrderId = maxId2;
+                order.OrderId = maxId2+1;
                 _orderRepository.InsertOrder(order);
             }
         }

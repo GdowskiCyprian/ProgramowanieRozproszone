@@ -70,7 +70,7 @@ namespace ProgramowanieRozproszone.Repositories
         }
         public void InsertOrder(Order order)
         {
-            _msSqlProvider.ExecuteNonQuery("INSERT INTO Orders VALUES (" + order.OrderId + " , " + order.OrderDate.Date.ToString() + " , " + order.Client.ClientId+")");
+            _msSqlProvider.ExecuteNonQuery("INSERT INTO Orders VALUES (" + order.OrderId + " , \'" + order.OrderDate.Date.ToString("yyyy-MM-dd") + "\' , " + order.Client.ClientId+")");
             foreach(var product in order.Products)
             {
                 _msSqlProvider.ExecuteNonQuery("INSERT INTO OrderIdtoProductId VALUES ( " + order.OrderId + " , " + product.ProductId + ")");
@@ -78,7 +78,7 @@ namespace ProgramowanieRozproszone.Repositories
         }
         public void InsertOrder2(Order order)
         {
-            _msSqlProvider2.ExecuteNonQuery("INSERT INTO Orders VALUES (" + order.OrderId + " , " + order.OrderDate.Date.ToString() + " , " + order.Client.ClientId + ")");
+            _msSqlProvider2.ExecuteNonQuery("INSERT INTO Orders VALUES (" + order.OrderId + " , \'" + order.OrderDate.Date.ToString("yyyy-MM-dd") + "\' , " + order.Client.ClientId + ")");
             foreach (var product in order.Products)
             {
                 _msSqlProvider2.ExecuteNonQuery("INSERT INTO OrderIdtoProductId VALUES ( " + order.OrderId + " , " + product.ProductId + ")");
